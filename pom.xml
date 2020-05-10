@@ -22,7 +22,41 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <build>
         <finalName>struts</finalName>
@@ -31,6 +65,26 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.2.0</version>
+                <configuration>
+                    <to>
+                        <image>gcr.io/my-gcp-project/my-app</image>
+                    </to>
+                    <container>
+                        <jvmFlags>
+                            <jvmFlag>-Djava.security.egd=file:/dev/./urandom</jvmFlag>
+                            <jvmFlag>-Xdebug</jvmFlag>
+                            <jvmFlag>-Duser.timezone=GMT+08</jvmFlag>
+                        </jvmFlags>
+                        <ports>
+                            <port>8080</port>
+                        </ports>
+                    </container>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -41,7 +95,24 @@
         <version>2.0.6.RELEASE</version>
     </parent>
 
+    <!-- Add Spring Cloud GCP Dependency BOM -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-gcp-dependencies</artifactId>
+                <version>1.0.0.RC1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
+        <!-- Spring Cloud GCP -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

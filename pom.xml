@@ -72,7 +72,7 @@
                 <version>2.2.0</version>
                 <configuration>
                     <to>
-                        <image>gcr.io/my-gcp-project/my-app</image>
+                        <image>gcr.io/my-gcp-project/my-struts</image>
                     </to>
                     <container>
                         <jvmFlags>

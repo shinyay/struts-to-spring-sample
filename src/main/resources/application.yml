@@ -11,4 +11,5 @@ spring:
     gcp:
       sql:
         database-name: struts
-        instance-connection-name=YOUR_CLOUD_SQL_CONNECTION_NAME:
+        instance-connection-name: YOUR_CLOUD_SQL_CONNECTION_NAME
+  database: mysql

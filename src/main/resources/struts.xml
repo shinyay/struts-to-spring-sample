@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.devMode" value="true"></constant>
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="" class="com.google.shinyay.Index">
+            <result>/index.jsp</result>
+        </action>
+        <action name="addUserForm" class="com.google.shinyay.action.AddUserForm">
+            <result>/addUserForm.jsp</result>
+        </action>
+        <action name="addUser" class="com.google.shinyay.action.AddUser">
+            <result name="success">/addedUser.jsp</result>
+            <result name='failure'>/addUserForm.jsp</result>
+        </action>
+        <action name="findUserForm" class="com.google.shinyay.action.FindUserForm">
+            <result>/findUserForm.jsp</result>
+        </action>
+        <action name="findUser" class="com.google.shinyay.action.FindUser">
+            <result name='success'>/displayUser.jsp</result>
+            <result name='failure'>/findUserForm.jsp</result>
+        </action>
+        <action name="listAllUsers" class="com.google.shinyay.action.ListAllUsers">
+            <result>/displayUsers.jsp</result>
+        </action>
+
+    </package>
+</struts>

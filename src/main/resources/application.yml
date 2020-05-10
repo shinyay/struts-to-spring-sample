@@ -7,3 +7,8 @@ spring:
     url: jdbc:mysql://localhost:3306/struts?useSSL=false
     username: root
     password: mysql
+  cloud:
+    gcp:
+      sql:
+        database-name: struts
+        instance-connection-name=YOUR_CLOUD_SQL_CONNECTION_NAME:
